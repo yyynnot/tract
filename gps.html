@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="fordalogo.png" type="image/icon type">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+	<title>Tracker</title>
+    <script defer src="script.js"></script>
+</head>
+<body>
+<nav>
+    <div class="menu">
+      <div class="logo">
+		<img id="logo-img" src="fordalogo.png" alt="">
+        <a href="index.html">FORDA CO.</a>
+      </div>
+<ul>
+  <li><a href="contacts.html"><strong>Contact Us</strong></a></li>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn"><strong>About Us</strong></a>
+    <div class="dropdown-content">
+      <a href="devs.html">Developers</a>
+      <a href="about.html">About Company</a>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn"><strong>Home</strong></a>
+    <div class="dropdown-content">
+      <a href="products.html">Products</a>
+      <a href="services.html">Services</a>
+    </div>
+  </li>
+</ul>
+</nav>
+<div class="center">
+<div id="errorMessage"></div>
+<center>
+	<div id="demo2" style="max-width: 80vw; height: 80vh"></div>
+
+</center>
+	</div>
+
+
+<script src=
+"https://maps.google.com/maps/api/js?sensor=false">
+</script>
+<script type="text/javascript">
+	function getlocation() {
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(showLoc, errHand);
+	}
+	}
+	function showLoc(pos) {
+	latt = pos.coords.latitude;
+	long = pos.coords.longitude;
+	var lattlong = new google.maps.LatLng(latt, long);
+	var OPTions = {
+		center: lattlong,
+		zoom: 10,
+		mapTypeControl: true,
+		navigationControlOptions: {
+		style: google.maps.NavigationControlStyle.SMALL,
+		},
+	};
+	var mapg = new google.maps.Map(
+		document.getElementById("demo2"),
+		OPTions
+	);
+	var markerg = new google.maps.Marker({
+		position: lattlong,
+		map: mapg,
+		title: "You are here!",
+	});
+	}
+
+	function errHand(err) {
+	switch (err.code) {
+		case err.PERMISSION_DENIED:
+		result.innerHTML =
+			"The application doesn't have the permission to make use of location services";
+		break;
+		case err.POSITION_UNAVAILABLE:
+		result.innerHTML = "The location of the device is uncertain";
+		break;
+		case err.TIMEOUT:
+		result.innerHTML = "The request to get user location timed out";
+		break;
+		case err.UNKNOWN_ERROR:
+		result.innerHTML =
+			"Time to fetch location information exceeded" +
+			"the maximum timeout interval";
+		break;
+	}
+	}
+	getlocation()
+</script>
+</center>
+</body>
+
+
+</html>
